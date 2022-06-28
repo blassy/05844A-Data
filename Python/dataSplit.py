@@ -6,7 +6,7 @@ or converting the data, or manually with a tool such as BulkRenameUtility. The r
     TimeEnd: the datetime value for when the data in the file ends.
     File Name: the full name of the file in the directory, including extension.
 Once the reference file is read in, the script iterates through each line and opens the file. It then iterates through each column in the
-file, applies a timestamp to each line as the index, then saves the timestamp and single column as a new .csv in an associated folder.
+file, applies a timestamp to each line as the index, then saves the timestamp and single column as a new .pqt in an associated folder.
 
 '''
 import pandas as pd
@@ -46,8 +46,8 @@ for index, row in referenceFile.iterrows():
             os.makedirs(path)
             print(path + " has been created.")
 
-        #Print data to csv for column and timestamps.
-        tDF_path = path + "\\" + fileNumber + sensor + ".csv"
-        tDF.to_csv(tDF_path)
+        #Print data to parquet for column and timestamps.
+        tDF_path = path + "\\" + fileNumber + sensor + ".parquet"
+        tDF.to_parquet(tDF_path)
         print(tDF_path + " completed.")
     print(fileName + " completed.")
